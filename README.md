@@ -2,7 +2,7 @@
 - Certifique-se de ter instalado o NodeJS, execute no terminal <b>node -v</b>. Caso não aparece a versão [clique aqui](https://nodejs.org/en/) <br>
 - Na pasta raiz da aplicação execute no terminal <b>npm install</b>
 - Crie no seu diretório um arquivo chamado <b> .env </b>
-  - Dentro desse arquivo vão ficar as suas variávies de ambientes, são elas:
+  - Dentro desse arquivo vão ficar as suas variávies de ambiente, são elas:
      - MONGO_USER= <USUÁRIO_MONGO>
      - MONGO_PASS= <SENHA_DO_USUÁRIO_MONGO>
      - MONGO_CLUSTER= <[CLUSTER_ATALAS_MONGO](https://cloud.mongodb.com/user#/atlas/login)> Optei por usar o mongoBD atlas
