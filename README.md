@@ -1,5 +1,5 @@
 # apirest
-- Certifique-se de ter instalado o [NodeJS](https://nodejs.org/en/) (node -v)<br>
+- Certifique-se de ter instalado o [NodeJS](https://nodejs.org/en/) (terminal node -v)<br>
 - Na pasta raiz da aplicação execute no terminal <b>npm install</b>
 - Crie no seu diretório um arquivo chamado <b> .env </b>
   - Dentro desse arquivo vão ficar as suas variávies de ambientes, são elas:
