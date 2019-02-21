@@ -10,8 +10,6 @@ app.use(morgan('dev'));
 
 require('dotenv').config();
 
-require('./controllers/authController')(app);
-require('./controllers/userController')(app);
-
+require('./controllers/index')(app);
 
 app.listen(3000);
