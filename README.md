@@ -1,7 +1,7 @@
 # apirest
 - Certifique-se de ter instalado o NodeJS com versão >= 11.9.0, execute no terminal <b>node -v</b>. Caso não aparece a versão [clique aqui](https://nodejs.org/en/) <br>
 - Na pasta raiz da aplicação execute no terminal <b>npm install</b>
-- Crie no seu diretório um arquivo chamado <b> .env </b>
+- Crie no diretório raiz da aplicação um arquivo chamado <b> .env </b>
   - Dentro desse arquivo vão ficar as suas variávies de ambiente, são elas:
      - MONGO_USER= <USUÁRIO_MONGO>
      - MONGO_PASS= <SENHA_DO_USUÁRIO_MONGO>
