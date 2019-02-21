@@ -11,7 +11,7 @@
 - No terminal execute agora <b>npm run-script dev</b> para iniciar o nodemon na versão de desenvolvimento, assim toda vida que salvar um arquivo <b>.js</b> automaticamente o servido é atualizado
 - No Browser ou no seu Rest Client execute http://localhost:3000 para verificar se está tudo OK!
 - Rotas já criadas: 
-     - <i>/auth/register</i>
-     - <i>/auth/login</i>
-     - <i>/users</i>
-     - <i>/users/{id}</i>
+     - <b>POST</b> <i>/auth/register</i>
+     - <b>POST</b> <i>/auth/login</i>
+     - <b>GET</b> <i>/users</i>
+     - <b>GET</b> <i>/users/{id}</i>
