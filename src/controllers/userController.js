@@ -7,26 +7,21 @@ const router = express.Router();
 
 router.use(authMiddleware);
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
 
-	User.find({}, function(err, users) {
-		var userMap = {};
+	const id = req.userId;
 
-		users.forEach(function(user){
-			userMap[user._id] = user;
-		});
+	await User.findOne({_id: id}, function(err, user) {
+		if(err){
+			return res.status(400).json({error: 'User not found'});
+		}
 
-		var send = [userMap]
-
-		res.json({
-			total: users.length, 
-			data: send
-		});
+		return res.json({user});
 	});
 });
 
 
-router.get('/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
 
 	const { id } = req.params; 
 
@@ -40,4 +35,4 @@ router.get('/:id', async (req, res) => {
 
 });
 
-module.exports = app => app.use('/users', router);
+module.exports = app => app.use('/user', router);
