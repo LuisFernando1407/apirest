@@ -1,5 +1,4 @@
-const mongoose = require('../database');
-const bcrypt = require('bcryptjs');
+const mongoose = require('../../database');
 
 const Schema = mongoose.Schema;
 
@@ -13,20 +12,23 @@ const TaskSchema = new mongoose.Schema({
 	},
 	description: {
 		type: String,
-		unique: true,
+		default: null,
 		required: false,
 	},
-	password: {
-		type: String,
+	date: {
+		type: Date,
 		required: true,
-		select: false,
+	},
+	is_notified: {
+		type: Boolean,
+		default: false,
+		required: false
 	},
 	createdAt: {
 		type: Date,
 		default: Date.now,
 	},
 });
-
 
 const Task = mongoose.model('Task', TaskSchema);
 
