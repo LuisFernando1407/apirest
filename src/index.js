@@ -11,6 +11,6 @@ app.use(morgan('dev'));
 require('dotenv').config();
 
 require('./app/controllers/index')(app);
-require('./app/job/notificationController');
+require('./app/job/notificationJob');
 
 app.listen(3000);
