@@ -17,3 +17,4 @@
      - <b>POST</b> <i>/auth/login</i>
      - <b>GET</b> <i>/users</i>
      - <b>GET</b> <i>/users/{id}</i>
+     - <b> CRUD </b> <i>/user/tasks </i>
