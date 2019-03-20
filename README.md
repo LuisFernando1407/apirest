@@ -9,7 +9,7 @@
      - MONGO_DATABASE= <BANCO_DO_MONGO>
      - SECRET= <[CHAVE_ÚNICA_PARA_GERAR_SEU_TOKEN](http://www.miraclesalad.com/webtools/md5.php)> Crie uma chave com qualquer palavra; EX: <i>noderest</i> e converta pra MD5
      - DATABASE_URL_FIREBASE= <URL_PARA_NOTIFICAÇÕES>
-- Crie uma pasta <i>config</i> na raiz do projeto e adicione lá seu JSON do firabase admin SDK <br>
+- Crie uma pasta <i>config</i> na raiz do projeto e adicione lá seu JSON do firebase admin SDK <br>
 - No terminal execute agora <b>npm run-script dev</b> para iniciar o nodemon na versão de desenvolvimento, assim toda vida que salvar um arquivo <b>.js</b> automaticamente o servido é atualizado
 - No Browser ou no seu Rest Client execute http://localhost:3000 para verificar se está tudo OK!
 - Rotas já criadas: 
