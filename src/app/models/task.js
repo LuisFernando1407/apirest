@@ -16,7 +16,7 @@ const TaskSchema = new mongoose.Schema({
 		required: false,
 	},
 	date: {
-		type: Date,
+		type: String,
 		required: true,
 	},
 	is_notified: {

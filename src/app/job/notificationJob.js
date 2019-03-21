@@ -6,6 +6,8 @@ const FCMToken = require('../models/FCMToken');
 
 const Task = require('../models/Task');
 
+const ObjectId = require('mongodb').ObjectID;
+
 const serviceAccount = require('../../config/my-tasks-f5a00-firebase-adminsdk-boke3-3c01fef3cb.json');
 
 admin.initializeApp({
@@ -13,7 +15,8 @@ admin.initializeApp({
     databaseURL: process.env.DATABASE_URL_FIREBASE
 });
 
-schedule.scheduleJob('*/1 * * *', () => {
+/* every 8 second */
+schedule.scheduleJob('*/8 * * * * *', () => {
 
     FCMToken.find({}, async (err, fcmtokens) => {
         if(fcmtokens.length > 0){
@@ -22,22 +25,22 @@ schedule.scheduleJob('*/1 * * *', () => {
                     if(tasks.length > 0){
                         tasks.forEach((task) => {
                             if(fcm.is_accepted){
-                                if(new Date().getTime() == task.date.getTime()){
+                                if(new Date().toLocaleString('pt-Br') == new Date(task.date).toLocaleString('pt-Br')){
                                     if(!task.is_notified){
                                         var message = {
                                             data: {
                                                 title: task.title,
-                                                body: task.description === null ? "Tarefa programada para hoje" : task.description,
-                                                id: task._id
+                                                body: task.description == null ? "Tarefa programada para hoje" : task.description,
+                                                id: ObjectId(task._id).toString()
                                             },
                                             token: fcm.token
                                         };
                                         
                                         admin.messaging().send(message).then(async (resp) => {
                                             await Task.findOneAndUpdate({_id: task._id}, {is_notified: true});
-                                            console.log(resp);
+                                            console.log("Notify-s", resp);
                                         }).catch((err) => {
-                                            console.log(err);
+                                            console.log("Notify-e", err);
                                         });
                                     }
                                 }

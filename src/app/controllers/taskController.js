@@ -49,14 +49,14 @@ router.post('/', async (req, res) => {
 		
 	}catch(err){
 	
-		return res.status(400).json({"error" : "Error creating new task"});
+		return res.status(400).json({"error" : err});
 
 	}
 });
 
 router.put('/:id', async (req, res) => {
 	try{
-		await Task.findOneAndUpdate({_id: req.params.id}, req.body, (err, task) => {
+		await Task.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}, (err, task) => {
 			if(!task){
 				return res.status(400).json({"error" : "Task not found"});
 			}
@@ -111,7 +111,7 @@ router.post('/notification', async (req, res) => {
 		/* User not fcm token for messagin */
 		if(fcmNotify.length == 0){
 			await FCMToken.create({token: fcm_token, user_id: req.userId})
-			return res.json({"sucess": "FCM Notify create success"});
+			return res.json({"success": "FCM Notify create success"});
 		}else{
 			await FCMToken.update({user_id: req.userId}, { $set: 
 				{token: fcm_token, is_accepted: is_accepted}
