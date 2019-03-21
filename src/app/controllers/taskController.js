@@ -78,7 +78,7 @@ router.delete('/:id', async (req, res) => {
 
 		await Task.find({_id: req.params.id}).remove().exec();
 
-		return res.json();
+		return res.json({"success": "Task successfully deleted"});
 		
 	}catch(err){
 
