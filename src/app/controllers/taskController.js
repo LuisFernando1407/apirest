@@ -1,4 +1,5 @@
 const express = require('express');
+
 const Task = require('../models/Task');
 
 const admin = require('firebase-admin');
@@ -122,6 +123,17 @@ router.post('/notification', async (req, res) => {
     }).catch((err) => {
         return res.status(400).json({"error" : err.message});
     });
+
+});
+
+router.get('/notification/status', async (req, res) => {
+
+	const fcm = await FCMToken.find({user_id: req.userId});
+
+	if(!fcm){
+		return res.status(400).json({"error": "FCM Token not provider"})
+	}
+	return res.json({fcm});
 
 });
 
