@@ -14,15 +14,23 @@ const UserSchema = new mongoose.Schema({
 	},
 	occupation: {
 		type: String,
-		required: false,
+		required: true,
+		default: null,
 	},
 	sex: {
 		type: String,
-		required: false,
+		required: true,
+		default: null,
 	},
 	phone: {
 		type: String,
 		required: false,
+		default: null,
+	},
+	avatar: {
+		type:String,
+		required: false,
+		default: null,
 	},
 	password: {
 		type: String,

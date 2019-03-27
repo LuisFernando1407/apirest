@@ -87,4 +87,7 @@ typings/
 #Firebase C M
 src/config/
 
+#Upload
+src/uploads
+
 # End of https://www.gitignore.io/api/node

@@ -10,6 +10,23 @@ const bcrypt = require('bcryptjs');
 
 const authMiddleware = require('../middlewares/auth');
 
+const path = require('path');
+
+const fs = require('fs');
+
+const multer = require('multer');
+
+const diskStorage = multer.diskStorage({
+	destination: function (req, file, cb){
+		cb(null, 'src/uploads/');
+	},
+	filename: function (req, file, cb){
+		cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+	}
+});
+
+var upload = multer({ storage: diskStorage, limits: {fileSize: 1 * 1024 * 1024 }});
+
 const router = express.Router();
 
 router.use(authMiddleware);
@@ -20,17 +37,37 @@ router.get('/', async (req, res) => {
 
 	await User.findOne({_id: id}, function(err, user) {
 		if(err){
-			return res.status(400).json({error: 'User not found'});
+			return res.status(400).json({"error": 'User not found'});
 		}
 
 		return res.json({user});
 	});
 });
 
-router.put('/', async (req, res) => {
+router.put('/', upload.single('avatar'), async (req, res) => {
+
+	const {name, sex, occupation, phone} = req.body;
+
+	const file = req.file;
+
+	const user = await User.find({_id: req.userId});
+
+	var avatar = user[0].avatar;
+
+	if(file){
+		avatar = file.filename;
+	}
+
+	if(file && user[0].avatar != null){
+		fs.unlink('./src/uploads/' + user[0].avatar, (err) => {
+			if (err) {
+				return res.status(400).json({"error": "Error deleting old image"})
+			}
+		});
+	}
 
 	try{
-		await User.findOneAndUpdate({_id: req.userId}, req.body, {new: true}, (err, user) => {
+		await User.findOneAndUpdate({_id: req.userId}, {name, sex, occupation, phone, avatar}, {new: true}, (err, user) => {
 			if(!user){
 				return res.status(400).json({"error" : "User not found"});
 			}
